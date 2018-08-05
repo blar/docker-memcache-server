@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "memcached" ]; then
+    set -- "$@" --memory-limit=$MEMCACHED_MEMORY_LIMIT
+fi;
+
+exec "$@"

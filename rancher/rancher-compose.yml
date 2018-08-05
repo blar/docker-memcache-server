@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+
+    memcache:
+        scale: "1"
+        start_on_create: true
+        health_check:
+            response_timeout: "2000"
+            healthy_threshold: "2"
+            port: "11211"
+            unhealthy_threshold: "3"
+            initializing_timeout: "60000"
+            interval: "2000"
+            reinitializing_timeout: "60000"
+
+catalog:
+    name: memcached
+    version: 1.0.0
+    description: memcached
+    minimum_rancher_version: 1.6.7
+    questions:
+        - variable: MEMCACHED_MEMORY_LIMIT
+          label: "Memory limit"
+          require: true
+          default: "64"
+          type: "int"
